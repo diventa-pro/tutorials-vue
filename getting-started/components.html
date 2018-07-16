@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Getting Started</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app-7">
+    <ol>
+        <item-book
+            v-for="book in library"
+            v-bind:book="book"
+            v-bind:key="book.title"></item-book>
+    </ol>
+</div>
+
+<script>
+
+Vue.component('item-book', {
+    props: ['book'],
+    template: '<li><i>{{ book.title }}</i> <small>by {{ book.author }}</small></li>'
+})
+
+var app7 = new Vue({
+    el: '#app-7',
+    data: {
+        library: [
+            { title: "Title #1", author: "Author #1" },
+            { title: "Title #2", author: "Author #2" },
+            { title: "Title #3", author: "Author #3" }
+        ]
+    }
+})
+
+</script>
+
+</body>
