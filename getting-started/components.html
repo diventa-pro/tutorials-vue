@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Getting Started</title>
+    <!-- imports the vue library, making it possible to write vue based app -->
     <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
 
 <div id="app-7">
     <ol>
+        <!-- Our custom vue component -->
+        <!-- v-for: render a list -->
+        <!-- v-bind: assign a value to a component's property -->
         <item-book
-            v-for="book in library"
-            v-bind:book="book"
-            v-bind:key="book.title"></item-book>
+            v-for="aBook in library"
+            v-bind:book="aBook"
+            v-bind:key="book.title" />
     </ol>
 </div>
 
 <script>
 
-Vue.component('item-book', {
-    props: ['book'],
-    template: '<li><i>{{ book.title }}</i> <small>by {{ book.author }}</small></li>'
-})
+// Defines a vue component
+Vue.component(
 
+    // the tag name
+    'item-book',
+
+    // an object explaining how the component works
+    {
+        // a list of properties which values can be used to render the component
+        props: ['book'],
+
+        // the template explaining how to render the component based on component properties
+        template: '<li><i>{{ book.title }}</i> <small>by {{ book.author }}</small></li>'
+    }
+);
+
+// View model setup
 var app7 = new Vue({
+
+    // the CSS selector of the element containing this vue app
     el: '#app-7',
+
+    // the model managed by this vue app
     data: {
         library: [
             { title: "Title #1", author: "Author #1" },
